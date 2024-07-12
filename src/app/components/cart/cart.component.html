@@ -1,0 +1,32 @@
+<div class="container bg-main-light p-4 rounded shadow-sm my-5">
+    <h4 class="my-3 fw-bold">Shop Cart</h4>
+    <p class="text-main fw-bold font-sm pb-3 border-bottom">Total Price : {{cartDetails.totalCartPrice}}</p>
+    <div  *ngFor="let cartItem of cartDetails?.products" class="row p-2 pb-3 border-bottom align-items-center">
+        <div class="col-md-1">
+            <img class="w-100 img-thumbnail" [src]="cartItem.product.imageCover" alt="">
+        </div>
+        <div class="col-md-11">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <p class="my-0 fw-bold">{{cartItem.product.title}}</p>
+                    <p class="my-0 text-main font-sm fw-bold">Price : {{cartItem.price}}</p>
+                    <button (click)="removeCartItem(cartItem.product._id)" class="btn m-0 p-0">
+                        <i class="fa-regular fa-trash-can text-main"></i>
+                        <span class="ms-1 text-secondary fw-bold font-sm">Remove</span>
+                    </button>
+                </div>
+                <div>
+                    <button (click)="updateCartItem(cartItem.product._id,cartItem.count + 1)" class="border-main rounded">+</button>
+                    <span class="mx-3">{{cartItem.count}}</span>
+                    <button (click)="updateCartItem(cartItem.product._id,cartItem.count - 1)" class="border-main rounded">-</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a [routerLink]="['/ShippingAddress' , cartDetails._id]" class="btn bg-main text-white mt-3">
+        Online Payment
+        <img src="assets/images/visa-1.svg" width="30px" alt="vias">
+    </a>
+</div>
+
+<app-shared-spinner *ngIf="isLoadingCart"></app-shared-spinner>

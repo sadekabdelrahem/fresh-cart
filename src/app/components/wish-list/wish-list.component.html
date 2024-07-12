@@ -1,0 +1,27 @@
+<div class="container bg-main-light p-4 rounded shadow-sm my-5">
+    <h4 class="my-3 fw-bold ">My wishlist</h4>
+    <div  *ngFor="let product of allWishListProduct" class="row p-2 pb-3 border-bottom align-items-center">
+        <div class="col-md-2">
+            <img class="w-100 img-thumbnail" [src]="product.imageCover" alt="">
+        </div>
+        <div class="col-md-10">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <p class="my-0 fw-bold">{{product.title}}</p>
+                    <p class="my-0 text-main font-sm fw-bold">Price : {{product.price}}</p>
+                    <button (click)="removeProductFromWishList(product._id)" class="btn  m-0 p-0">
+                        <i class="fa-regular fa-trash-can text-main"></i>
+                        <span class="ms-1 text-secondary fw-bold font-sm">Remove</span>
+                    </button>
+                </div>
+                <div>
+                    <button (click)="addToCart(product._id)" class="btn bg-main text-white">Add To Cart 
+                        <i class="fas fa-shopping-cart ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-shared-spinner *ngIf="isLoadingCart"></app-shared-spinner>

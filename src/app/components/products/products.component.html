@@ -1,0 +1,9 @@
+<input [(ngModel)]="searchItems" type="text" class="form-control my-5" placeholder="search by product name">
+    
+    <div  class="row my-5">
+       <div *ngFor="let currentProduct of allProduct|search:searchItems" class="col-6 col-sm-4 col-md-3">
+            <app-product [product]="currentProduct"></app-product>
+        </div>
+    </div>
+
+    <app-shared-spinner *ngIf="isLoading"></app-shared-spinner>

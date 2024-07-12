@@ -1,0 +1,12 @@
+<div class="row g-4 ">
+    <div *ngFor="let AllCategories of brands" class="product col-6 col-sm-4 col-md-3">
+<a [routerLink]="['/brands/',AllCategories._id]">
+        <div class="border shadow-sm rounded p-3 ">
+            <img height="200" class="rounded w-100 object-fit-cover " [src]="AllCategories.image" alt="">
+            <p class="fw-bold text-center mt-3">{{AllCategories.name}}</p>
+        </div>
+    </a>
+</div>
+</div>
+
+<app-shared-spinner *ngIf="isLoading"></app-shared-spinner>

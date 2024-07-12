@@ -1,0 +1,13 @@
+<h3 class="my-3 fw-bold">Shop Popular Categories</h3>
+<owl-carousel-o [options]="customOptions">
+
+    <ng-container *ngFor="let cat of allCategories">
+    <ng-template carouselSlide>
+        <img height="250" class="object-fit-cover" [src]="cat.image" [alt]="cat.name">
+        <p class="py-2 font-sm">{{cat.name}}</p>
+    </ng-template>
+    </ng-container>
+
+    </owl-carousel-o>
+
+    <app-shared-spinner *ngIf="isLoading"></app-shared-spinner>

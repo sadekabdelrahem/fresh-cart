@@ -1,0 +1,26 @@
+<div class="w-50 mx-auto my-5">
+    <h3 class="text-main">Shipping Address :</h3>
+    <form (ngSubmit)="handelShippingAddress(ShippingAddressForm)" [formGroup]="ShippingAddressForm">
+        <label for="details">details</label>
+        <input class="form-control" formControlName="details" id="details" type="text">
+        <div *ngIf="ShippingAddressForm.get('details')?.invalid && ShippingAddressForm.get('details')?.touched" class="text-danger">
+            <p *ngIf="ShippingAddressForm.get('details')?.getError('required')" class="my-0">details is required</p>
+        </div>
+
+        <label class="mt-3" for="phone">phone</label>
+        <input class="form-control" formControlName="phone" id="phone" type="tel">
+        <div *ngIf="ShippingAddressForm.get('phone')?.invalid && ShippingAddressForm.get('phone')?.touched" class="text-danger">
+            <p *ngIf="ShippingAddressForm.get('phone')?.getError('required')" class="my-0">phone is required</p>
+            <p *ngIf="ShippingAddressForm.get('phone')?.getError('pattern')" class="my-0">please enter a valid egyption phone number</p>
+        </div>
+
+        <label class="mt-3" for="city">city</label>
+        <input class="form-control" formControlName="city" id="city" type="text">
+        <div *ngIf="ShippingAddressForm.get('city')?.invalid && ShippingAddressForm.get('city')?.touched" class="text-danger">
+            <p *ngIf="ShippingAddressForm.get('city')?.getError('required')" class="my-0">city is required</p>
+        </div>
+        <button class="btn bg-main mt-3 d-block ms-auto text-white">Pay Now</button>
+    </form>
+</div>
+
+<app-shared-spinner *ngIf="isLoading"></app-shared-spinner>

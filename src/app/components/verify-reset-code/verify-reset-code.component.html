@@ -1,0 +1,23 @@
+<div class="w-50 mx-auto my-5">
+    <form (ngSubmit)="handleVerifyCode(verifyResetCode)" [formGroup]="verifyResetCode">
+        <h2>verify Reset Code:</h2>
+        
+        <p *ngIf="apiErrorMassage" class="alert alert-danger text-center">{{apiErrorMassage}}</p>
+
+        <p class="font-sm mb-0 mt-3 text-secondary">we have sent averification code to your email address.
+            please enter the code below to verify your identity and broceed to reset your password.</p>
+        
+        <label class="mt-3"  for="resetCode">resetCode:</label>
+        <input class="form-control" formControlName="resetCode" id="resetCode" type="text">
+        <div *ngIf="verifyResetCode.get('resetCode')?.invalid && verifyResetCode.get('resetCode')?.touched" class="text-danger">
+            <p *ngIf="verifyResetCode.get('resetCode')?.getError('required')" class="my-0">reset Code is required</p>
+        </div>
+        
+        <div class="d-flex justify-content-end align-items-center">
+            <button [disabled]="verifyResetCode.invalid || isLoading" class="btn bg-main text-light my-3">
+            <span *ngIf="!isLoading">Send</span>
+            <span *ngIf="isLoading" class="fa fa-spinner fa-spin"></span>
+        </button>
+        </div>
+    </form>
+</div>
